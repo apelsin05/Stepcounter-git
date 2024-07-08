@@ -1,6 +1,8 @@
 package com.stepcounter.stepcounter;
 
 
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -20,10 +23,14 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     private static final String TAG="SensorActivity"; //tagul clasei, indiferent de cate obiecte ar avea, tagul ramane acelasi (static)
 // private static final String TAG=SensorActivity.class.getSimpleName();
 
-    //step counter sensor
+    private TextView mText;
+    private TextView totalStepsText;
+    private TextView totalStepsCount;
+    private float totalSteps=0; //has the total steps until present moment
+     //step counter sensor
     //i want to acces androids's sensors by SensorManager class
     private SensorManager mSensorManager;
-    private Sensor mAccelerometer;
+    private Sensor mSensor;
 
     public SensorActivity() {
 
@@ -31,7 +38,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
     protected void onResume() {
         super.onResume();
-        mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     protected void onPause() {
@@ -44,14 +51,19 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
     }
 
     public void onSensorChanged(SensorEvent event) {
-        Log.d(TAG, "Event "+event.toString());
+        //Log.d(TAG, "Event "+event.toString());
+        totalSteps=event.values[0]; //accesez primul element din array
+        Log.d(TAG,"STEPS = " + totalSteps);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                totalStepsCount.setText(String.valueOf(totalSteps));
+            }
+        });
     }
 
 
-    TextView mText;
-    TextView totalStepsText;
-
-    @Override
+    @Override //onCreate(bundle) initializing my activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -62,11 +74,29 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             return insets;
         });
 
-        mText=(TextView) findViewById(R.id.text);
-        totalStepsText=(TextView) findViewById(R.id.text);
+        mText=(TextView) findViewById(R.id.title);
+        totalStepsText=(TextView) findViewById(R.id.targetText);
+        totalStepsCount=(TextView) findViewById(R.id.stepsTakenCount);
 
         mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
-        mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        if(mSensor==null){
+            Log.e(TAG, " NULL ");
+        }
+        else {
+            Log.d(TAG, " NOT NULL");
+        }
+
+        if(ContextCompat.checkSelfPermission(this,
+                "android.permission.ACTIVITY_RECOGNITION") == PackageManager.PERMISSION_DENIED) {
+            Log.e(TAG, "ACTIVITY_RECOGNITION not granted!");
+            //ask for permission
+            requestPermissions(new String[]{"android.permission.ACTIVITY_RECOGNITION"}, 42);
+        }
+
+
+
+
     }
 
 

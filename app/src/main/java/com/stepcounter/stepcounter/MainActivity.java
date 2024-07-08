@@ -14,7 +14,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity implements SensorEventListener {
+public class MainActivity extends AppCompatActivity  implements SensorEventListener {
 
     TextView mText;
     TextView totalStepsText;
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
 
 
-    @Override
+    @Override //onCreate(bundle) initializing my acivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -37,8 +37,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             return insets;
         });
 
-        mText=(TextView) findViewById(R.id.text);
-        totalStepsText=(TextView) findViewById(R.id.text);
+        mText=(TextView) findViewById(R.id.title);
+        totalStepsText=(TextView) findViewById(R.id.targetText);
+        totalStepsText=(TextView) findViewById(R.id.stepsTakenCount);
+
     }
 
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
@@ -48,5 +50,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void onSensorChanged(SensorEvent event) {
        // Log.d(TAG, "Event "+event.toString());
     }
+
+
 
 }
