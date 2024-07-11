@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Stepcounter</string>
+    <string name="dialog_title">Set your new step goal!</string>
 </resources>

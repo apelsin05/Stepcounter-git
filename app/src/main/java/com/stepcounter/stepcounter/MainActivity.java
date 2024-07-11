@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
             return insets;
         });
 
-        mText=(TextView) findViewById(R.id.title);
+       // mText=(TextView) findViewById(R.id.title);
         totalStepsText=(TextView) findViewById(R.id.targetText);
         totalStepsText=(TextView) findViewById(R.id.stepsTakenCount);
 

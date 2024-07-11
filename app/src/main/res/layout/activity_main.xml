@@ -5,71 +5,132 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".MainActivity">
 
 <!--    @id/text asa ii dau un id testului basic de dinainte-->
 
 
-    <TextView
-        android:id="@+id/title"
+<!--    <TextView-->
+<!--        android:id="@+id/title"-->
 
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:padding="20dp"-->
+<!--        android:text="Step Counter"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="25dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.497"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.094" />-->
+
+
+    <LinearLayout
+        android:id="@+id/layoutStepsTarget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:text="Step Counter"
-        android:textColor="@color/black"
-        android:textSize="25dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.094" />
+        app:layout_constraintVertical_bias="0.250">
 
-    <TextView
-        android:id="@+id/targetText"
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
+            <TextView
+                android:id="@+id/targetText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Steps Target"
+                android:textColor="#FFE4C4"
+                android:shadowColor="#401004"
+                android:textSize="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.141"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.203" />
+
+            <TextView
+                android:id="@+id/targetNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="0"
+                android:textColor="#FFE4C4"
+                android:shadowColor="#401004"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="@id/targetText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.262"
+                app:layout_constraintStart_toEndOf="@id/targetText"
+                app:layout_constraintTop_toTopOf="@id/targetText"
+                app:layout_constraintVertical_bias="0.571" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/changeTargetButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Change Target"
+            android:backgroundTint="#4E342E"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutStepsTaken"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:text="Steps Target"
-        android:textColor="#0F9D58"
-        android:textSize="20dp"
+        android:orientation="horizontal"
+        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.265" />
+        app:layout_constraintTop_toBottomOf="@+id/layoutStepsTarget"
+        app:layout_constraintVertical_bias="0.150">
 
-    <TextView
-        android:id="@+id/stepsTakenText"
+        <TextView
+            android:id="@+id/stepsTakenText"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="Steps Taken"
-        android:textColor="#f7345e"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.455" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Steps Taken"
+            android:textColor="#94450c"
+            android:shadowColor="#401004"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.125"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.531" />
 
-    <TextView
-        android:id="@+id/stepsTakenCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="0"
-        android:textColor="#f7345e"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="@id/stepsTakenText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.397"
-        app:layout_constraintStart_toEndOf="@id/stepsTakenText"
-        app:layout_constraintTop_toTopOf="@id/stepsTakenText" />
+        <TextView
+            android:id="@+id/stepsTakenCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="0"
+            android:textColor="#94450c"
+            android:shadowColor="#401004"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="@id/stepsTakenText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.397"
+            app:layout_constraintStart_toEndOf="@id/stepsTakenText"
+            app:layout_constraintTop_toTopOf="@id/stepsTakenText" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
