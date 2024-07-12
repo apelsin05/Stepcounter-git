@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "470106362988",
+    "project_id": "stepcounter-project",
+    "storage_bucket": "stepcounter-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470106362988:android:2d1b340456b20958a33449",
+        "android_client_info": {
+          "package_name": "com.stepcounter.stepcounter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpOLucwvgMUw5U2VXpukZTR42Zt_nlyHk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
